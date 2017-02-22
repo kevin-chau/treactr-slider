@@ -1,5 +1,5 @@
 {
-  "name": "rc-slider",
+  "name": "treactr-slider",
   "version": "6.1.2",
   "description": "Slider UI component for React",
   "keywords": [
@@ -8,14 +8,14 @@
     "react-slider",
     "slider"
   ],
-  "homepage": "http://github.com/react-component/slider",
-  "author": "sima.zhang1990@gmail.com",
+  "homepage": "http://github.com/kevinchau321/treactr-slider",
+  "author": "kevinchau321",
   "repository": {
     "type": "git",
-    "url": "git@github.com:react-component/slider.git"
+    "url": "git@github.com:kevinchau321/treactr-slider.git"
   },
   "bugs": {
-    "url": "http://github.com/react-component/slider/issues"
+    "url": "http://github.com/kevinchau321/treactr-slider/issues"
   },
   "files": [
     "assets/*.css",
