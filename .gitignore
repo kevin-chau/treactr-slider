@@ -20,7 +20,9 @@ Thumbs.db
 .build
 node_modules
 .cache
-dist
+assets/**/*.less
 build
-lib
 /coverage
+examples
+src
+tests
