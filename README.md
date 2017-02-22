@@ -1,4 +1,4 @@
-# rc-slider
+# treactr-slider
 ---
 
 Slider UI component for React
@@ -10,8 +10,8 @@ Slider UI component for React
 [![node version][node-image]][node-url]
 [![npm download][download-image]][download-url]
 
-[npm-image]: http://img.shields.io/npm/v/rc-slider.svg?style=flat-square
-[npm-url]: http://npmjs.org/package/rc-slider
+[npm-image]: http://img.shields.io/npm/v/treactr-slider.svg?style=flat-square
+[npm-url]: http://npmjs.org/package/treactr-slider
 [travis-image]: https://img.shields.io/travis/react-component/slider.svg?style=flat-square
 [travis-url]: https://travis-ci.org/react-component/slider
 [coveralls-image]: https://img.shields.io/coveralls/react-component/slider.svg?style=flat-square
@@ -20,8 +20,8 @@ Slider UI component for React
 [gemnasium-url]: https://gemnasium.com/react-component/slider
 [node-image]: https://img.shields.io/badge/node.js-%3E=_0.10-green.svg?style=flat-square
 [node-url]: http://nodejs.org/download/
-[download-image]: https://img.shields.io/npm/dm/rc-slider.svg?style=flat-square
-[download-url]: https://npmjs.org/package/rc-slider
+[download-image]: https://img.shields.io/npm/dm/treactr-slider.svg?style=flat-square
+[download-url]: https://npmjs.org/package/treactr-slider
 
 ## Screenshots
 
@@ -41,21 +41,21 @@ Slider UI component for React
 ## Install
 
 ```bash
-npm install --save rc-slider
+npm install --save treactr-slider
 ```
 
-[![rc-slider](https://nodei.co/npm/rc-slider.png)](https://npmjs.org/package/rc-slider)
+[![treactr-slider](https://nodei.co/npm/treactr-slider.png)](https://npmjs.org/package/treactr-slider)
 
 ## Usage
 
 ````js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Slider, { Range } from 'rc-slider';
+import Slider, { Range } from 'treactr-slider';
 // We can just import Slider or Range to reduce bundle size
-// import Slider from 'rc-slider/lib/Slider';
-// import Range from 'rc-slider/lib/Range';
-import 'rc-slider/assets/index.css';
+// import Slider from 'treactr-slider/lib/Slider';
+// import Range from 'treactr-slider/lib/Range';
+import 'treactr-slider/assets/index.css';
 
 ReactDOM.render(
   <div>
@@ -73,7 +73,7 @@ ReactDOM.render(
 An extension to make Slider or Range support Tooltip on handle.
 
 ```jsx
-const Slider = require('rc-slider');
+const Slider = require('treactr-slider');
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
 ```
@@ -140,4 +140,4 @@ Online examples: [http://react-component.github.io/slider/](http://react-compone
 
 ## License
 
-`rc-slider` is released under the MIT license.
+`treactr-slider` is released under the MIT license.
