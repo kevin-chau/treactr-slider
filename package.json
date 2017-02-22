@@ -25,7 +25,7 @@
   "license": "MIT",
   "main": "./lib/index.js",
   "entry": {
-    "rc-slider": [
+    "treactr-slider": [
       "./assets/index.less",
       "./src/index.js"
     ]
