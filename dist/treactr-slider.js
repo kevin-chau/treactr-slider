@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["react", "react-dom"], factory);
 	else if(typeof exports === 'object')
-		exports["rc-slider"] = factory(require("react"), require("react-dom"));
+		exports["treactr-slider"] = factory(require("react"), require("react-dom"));
 	else
-		root["rc-slider"] = factory(root["React"], root["ReactDOM"]);
+		root["treactr-slider"] = factory(root["React"], root["ReactDOM"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_13__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -6627,4 +6627,4 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ ])
 });
 ;
-//# sourceMappingURL=rc-slider.js.map
+//# sourceMappingURL=treactr-slider.js.map
