@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 
-require('rc-slider/assets/index.less');
+require('treactr-slider/assets/index.less');
 require('rc-tooltip/assets/bootstrap.css');
 
 const React = require('react');
 const ReactDOM = require('react-dom');
 const Tooltip = require('rc-tooltip');
-const Slider = require('rc-slider');
+const Slider = require('treactr-slider');
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
 const Handle = Slider.Handle;

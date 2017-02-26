@@ -20,9 +20,4 @@ Thumbs.db
 .build
 node_modules
 .cache
-assets/**/*.less
-build
 /coverage
-examples
-src
-tests

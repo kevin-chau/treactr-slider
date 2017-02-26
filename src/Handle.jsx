@@ -5,7 +5,7 @@ export default class Handle extends React.Component {
     const { className, vertical, offset, ...restProps } = this.props;
 
     const style = vertical ? { bottom: `${offset}%` } : { left: `${offset}%` };
-    return <div {...restProps} className={className} style={style} />;
+    return <div {...restProps} className={className} style={style} ><hr></hr></div>;
   }
 }
 

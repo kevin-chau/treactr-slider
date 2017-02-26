@@ -1,9 +1,9 @@
 /* eslint react/no-multi-comp: 0 */
-require('rc-slider/assets/index.less');
+require('treactr-slider/assets/index.less');
 
 const React = require('react');
 const ReactDOM = require('react-dom');
-const Slider = require('rc-slider');
+const Slider = require('treactr-slider');
 
 const style = { width: 400, margin: 50 };
 

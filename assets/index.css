@@ -110,7 +110,7 @@
 }
 .rc-slider-vertical .rc-slider-rail {
   height: 100%;
-  width: 4px;
+  width: 10px;
 }
 .rc-slider-vertical .rc-slider-track {
   left: 5px;
