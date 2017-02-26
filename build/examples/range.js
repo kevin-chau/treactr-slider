@@ -3,12 +3,12 @@ webpackJsonp([2],{
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(256);
+	module.exports = __webpack_require__(270);
 
 
 /***/ },
 
-/***/ 256:
+/***/ 270:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22,11 +22,11 @@ webpackJsonp([2],{
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
 	
 	/* eslint react/no-multi-comp: 0 */
-	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"rc-slider/assets/index.less\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	__webpack_require__(2);
 	
-	var React = __webpack_require__(3);
-	var ReactDOM = __webpack_require__(34);
-	var Slider = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"rc-slider\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var React = __webpack_require__(4);
+	var ReactDOM = __webpack_require__(35);
+	var Slider = __webpack_require__(256);
 	var Range = Slider.Range;
 	
 	var style = { width: 400, margin: 50 };

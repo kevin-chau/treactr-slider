@@ -25,18 +25,16 @@
   background-color: #abe2fb;
 }
 .rc-slider-handle {
+  background-color: #2B2D2D;
   position: absolute;
   margin-left: -7px;
   margin-top: -5px;
-  width: 14px;
-  height: 14px;
+  width: 37px;
+  height: 12px;
   cursor: pointer;
-  border-radius: 50%;
-  border: solid 2px #96dbfa;
-  background-color: #fff;
-}
-.rc-slider-handle:hover {
-  border-color: #57c5f7;
+  border-top: solid 1px #3D3E3E;
+  border-radius: 2px;
+  box-shadow: 0px 0px 0pt 1pt black;
 }
 .rc-slider-handle-active:active {
   border-color: #57c5f7;
@@ -110,7 +108,7 @@
 }
 .rc-slider-vertical .rc-slider-rail {
   height: 100%;
-  width: 10px;
+  width: 4px;
 }
 .rc-slider-vertical .rc-slider-track {
   left: 5px;
@@ -118,7 +116,7 @@
   width: 4px;
 }
 .rc-slider-vertical .rc-slider-handle {
-  margin-left: -5px;
+  margin-left: -16px;
   margin-bottom: -7px;
 }
 .rc-slider-vertical .rc-slider-mark {
@@ -287,6 +285,13 @@
   margin-left: -4px;
   border-width: 4px 4px 0;
   border-top-color: #6c6c6c;
+}
+hr {
+  margin: auto;
+  margin-top: 4px;
+  height: 2px;
+  background-color: #fff;
+  width: 31px;
 }
 
 /*# sourceMappingURL=treactr-slider.css.map*/

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>vertical.js - example - treactr-slider@6.1.2</title>
+  <title>vertical.js - example - treactr-slider@6.1.5</title>
   <meta name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta charset="utf-8"/>
@@ -257,23 +257,23 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
     document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
   }
   </script>
-  
+  <link rel="stylesheet" href="common.css" />
 </head>
 
 <body>
   <div class="container">
     <div class="header">
-      <h1>treactr-slider@6.1.2</h1>
+      <h1>treactr-slider@6.1.5</h1>
 
       <p>Slider UI component for React</p>
     </div>
     <div class="example" id="__react-content"></div>
 
-    <div class="highlight"><pre><code language="js"><span class="hljs-built_in">require</span>(<span class="hljs-string">'rc-slider/assets/index.less'</span>);
+    <div class="highlight"><pre><code language="js"><span class="hljs-built_in">require</span>(<span class="hljs-string">'treactr-slider/assets/index.css'</span>);
 
 <span class="hljs-keyword">const</span> React = <span class="hljs-built_in">require</span>(<span class="hljs-string">'react'</span>);
 <span class="hljs-keyword">const</span> ReactDOM = <span class="hljs-built_in">require</span>(<span class="hljs-string">'react-dom'</span>);
-<span class="hljs-keyword">const</span> Slider = <span class="hljs-built_in">require</span>(<span class="hljs-string">'rc-slider'</span>);
+<span class="hljs-keyword">const</span> Slider = <span class="hljs-built_in">require</span>(<span class="hljs-string">'treactr-slider'</span>);
 
 <span class="hljs-keyword">const</span> style = { float: <span class="hljs-string">'left'</span>, width: <span class="hljs-number">160</span>, height: <span class="hljs-number">400</span>, marginBottom: <span class="hljs-number">160</span>, marginLeft: <span class="hljs-number">50</span> };
 <span class="hljs-keyword">const</span> parentStyle = { overflow: <span class="hljs-string">'hidden'</span> };
@@ -323,6 +323,10 @@ ReactDOM.render(
       <span class="hljs-tag">&lt;<span class="hljs-title">Slider.Range</span> <span class="hljs-attribute">vertical</span> <span class="hljs-attribute">min</span>=<span class="hljs-value">{-10}</span> <span class="hljs-attribute">marks</span>=<span class="hljs-value">{marks}</span> <span class="hljs-attribute">step</span>=<span class="hljs-value">{10}</span>
         <span class="hljs-attribute">onChange</span>=<span class="hljs-value">{log}</span> <span class="hljs-attribute">defaultValue</span>=<span class="hljs-value">{[20,</span> <span class="hljs-attribute">40</span>]}
       /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{style}</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Default<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Slider</span> <span class="hljs-attribute">vertical</span> /&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
   , document.getElementById('__react-content'));

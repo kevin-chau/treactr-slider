@@ -1684,7 +1684,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        restProps = _objectWithoutProperties(_props, ['className', 'vertical', 'offset']);
 	
 	    var style = vertical ? { bottom: offset + '%' } : { left: offset + '%' };
-	    return _react2.default.createElement('div', _extends({}, restProps, { className: className, style: style }));
+	    return _react2.default.createElement(
+	      'div',
+	      _extends({}, restProps, { className: className, style: style }),
+	      _react2.default.createElement('hr', null)
+	    );
 	  };
 	
 	  return Handle;

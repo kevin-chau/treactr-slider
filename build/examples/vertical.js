@@ -3,21 +3,21 @@ webpackJsonp([4],{
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(258);
+	module.exports = __webpack_require__(272);
 
 
 /***/ },
 
-/***/ 258:
+/***/ 272:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"rc-slider/assets/index.less\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	__webpack_require__(2);
 	
-	var React = __webpack_require__(3);
-	var ReactDOM = __webpack_require__(34);
-	var Slider = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"rc-slider\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var React = __webpack_require__(4);
+	var ReactDOM = __webpack_require__(35);
+	var Slider = __webpack_require__(256);
 	
 	var style = { float: 'left', width: 160, height: 400, marginBottom: 160, marginLeft: 50 };
 	var parentStyle = { overflow: 'hidden' };
@@ -112,6 +112,16 @@ webpackJsonp([4],{
 	    React.createElement(Slider.Range, { vertical: true, min: -10, marks: marks, step: 10,
 	      onChange: log, defaultValue: [20, 40]
 	    })
+	  ),
+	  React.createElement(
+	    'div',
+	    { style: style },
+	    React.createElement(
+	      'p',
+	      null,
+	      'Default'
+	    ),
+	    React.createElement(Slider, { vertical: true })
 	  )
 	), document.getElementById('__react-content'));
 
