@@ -1,6 +1,6 @@
 {
   "name": "treactr-slider",
-  "version": "6.1.4",
+  "version": "6.1.5",
   "description": "Slider UI component for React",
   "keywords": [
     "react",
@@ -25,7 +25,10 @@
   "license": "MIT",
   "main": "./lib/index.js",
   "entry": {
-    "treactr-slider": ["./assets/index.less", "./src/index.js"]
+    "treactr-slider": [
+      "./assets/index.less",
+      "./src/index.js"
+    ]
   },
   "style": "./assets/index.css",
   "config": {
