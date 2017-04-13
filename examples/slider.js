@@ -16,50 +16,52 @@ function percentFormatter(v) {
   return `${v} %`;
 }
 
-const CustomizedSlider = React.createClass({
-  getInitialState() {
-    return {
+class CustomizedSlider extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       value: 50,
     };
-  },
-  onSliderChange(value) {
+  }
+  onSliderChange = (value) => {
     log(value);
     this.setState({
       value,
     });
-  },
-  onAfterChange(value) {
+  }
+  onAfterChange = (value) => {
     console.log(value); //eslint-disable-line
-  },
+  }
   render() {
     return (
       <Slider value={this.state.value}
         onChange={this.onSliderChange} onAfterChange={this.onAfterChange}
       />
     );
-  },
-});
+  }
+}
 
-const DynamicBounds = React.createClass({
-  getInitialState() {
-    return {
+class DynamicBounds extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       min: 0,
       max: 100,
     };
-  },
-  onSliderChange(value) {
+  }
+  onSliderChange = (value) => {
     log(value);
-  },
-  onMinChange(e) {
+  }
+  onMinChange = (e) => {
     this.setState({
       min: +e.target.value || 0,
     });
-  },
-  onMaxChange(e) {
+  }
+  onMaxChange = (e) => {
     this.setState({
       max: +e.target.value || 100,
     });
-  },
+  }
   render() {
     return (
       <div>
@@ -74,8 +76,8 @@ const DynamicBounds = React.createClass({
         />
       </div>
     );
-  },
-});
+  }
+}
 
 ReactDOM.render(
   <div>
@@ -100,6 +102,22 @@ ReactDOM.render(
     <div style={style}>
       <p>Basic Slider without tooltip</p>
       <Slider tipFormatter={null} onChange={log} />
+    </div>
+    <div style={style}>
+      <p>Slider with custom handle and track style</p>
+      <Slider
+        defaultValue={30}
+        maximumTrackStyle={{ backgroundColor: 'red', height: 10 }}
+        minimumTrackStyle={{ backgroundColor: 'blue', height: 10 }}
+        handleStyle={{
+          borderColor: 'blue',
+          height: 28,
+          width: 28,
+          marginLeft: -14,
+          marginTop: -9,
+          backgroundColor: 'blue',
+        }}
+      />
     </div>
     <div style={style}>
       <p>Basic Slider, disabled</p>

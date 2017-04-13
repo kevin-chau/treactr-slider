@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Track from './common/Track';
 import createSlider from './common/createSlider';
 import * as utils from './utils';
@@ -109,6 +110,8 @@ class Slider extends React.Component {
       vertical,
       included,
       disabled,
+      minimumTrackStyle,
+      handleStyle,
       handle: handleGenerator,
     } = this.props;
     const { value, dragging } = this.state;
@@ -120,6 +123,7 @@ class Slider extends React.Component {
       value,
       dragging,
       disabled,
+      handleStyle,
       ref: h => this.saveHandle(0, h),
     });
     const track = (
@@ -129,6 +133,7 @@ class Slider extends React.Component {
         included={included}
         offset={0}
         length={offset}
+        minimumTrackStyle={minimumTrackStyle}
       />
     );
 

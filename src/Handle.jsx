@@ -1,11 +1,14 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import assign from 'object-assign';
 
 export default class Handle extends React.Component {
   render() {
-    const { className, vertical, offset, ...restProps } = this.props;
-
+    const {
+      className, vertical, offset, handleStyle, ...restProps,
+    } = this.props;
     const style = vertical ? { bottom: `${offset}%` } : { left: `${offset}%` };
-    return <div {...restProps} className={className} style={style} ><hr></hr></div>;
+    return <div {...restProps} className={className} style={assign({}, style, handleStyle)} ><hr></hr></div>;
   }
 }
 
@@ -13,4 +16,5 @@ Handle.propTypes = {
   className: PropTypes.string,
   vertical: PropTypes.bool,
   offset: PropTypes.number,
+  handleStyle: PropTypes.object,
 };

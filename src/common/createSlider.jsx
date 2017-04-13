@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import addEventListener from 'rc-util/lib/Dom/addEventListener';
 import classNames from 'classnames';
 import warning from 'warning';
@@ -30,6 +31,9 @@ export default function createSlider(Component) {
       dots: PropTypes.bool,
       vertical: PropTypes.bool,
       style: PropTypes.object,
+      minimumTrackStyle: PropTypes.object,
+      maximumTrackStyle: PropTypes.object,
+      handleStyle: PropTypes.object,
     };
 
     static defaultProps = {
@@ -52,6 +56,9 @@ export default function createSlider(Component) {
       disabled: false,
       dots: false,
       vertical: false,
+      minimumTrackStyle: {},
+      maximumTrackStyle: {},
+      handleStyle: {},
     };
 
     constructor(props) {
@@ -206,6 +213,7 @@ export default function createSlider(Component) {
         min,
         max,
         children,
+        maximumTrackStyle,
         style,
       } = this.props;
       const { tracks, handles } = super.render();
@@ -217,6 +225,7 @@ export default function createSlider(Component) {
         [`${prefixCls}-vertical`]: vertical,
         [className]: className,
       });
+
       return (
         <div
           ref={this.saveSlider}
@@ -225,7 +234,7 @@ export default function createSlider(Component) {
           onMouseDown={disabled ? noop : this.onMouseDown}
           style={style}
         >
-          <div className={`${prefixCls}-rail`} />
+          <div className={`${prefixCls}-rail`} style={maximumTrackStyle} />
           {tracks}
           <Steps
             prefixCls={prefixCls}
