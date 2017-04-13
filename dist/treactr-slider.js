@@ -114,11 +114,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _propTypes = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"prop-types\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+	
 	var _Track = __webpack_require__(5);
 	
 	var _Track2 = _interopRequireDefault(_Track);
 	
-	var _createSlider = __webpack_require__(6);
+	var _createSlider = __webpack_require__(7);
 	
 	var _createSlider2 = _interopRequireDefault(_createSlider);
 	
@@ -241,6 +245,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        vertical = _props.vertical,
 	        included = _props.included,
 	        disabled = _props.disabled,
+	        minimumTrackStyle = _props.minimumTrackStyle,
+	        handleStyle = _props.handleStyle,
 	        handleGenerator = _props.handle;
 	    var _state = this.state,
 	        value = _state.value,
@@ -254,6 +260,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      value: value,
 	      dragging: dragging,
 	      disabled: disabled,
+	      handleStyle: handleStyle,
 	      ref: function ref(h) {
 	        return _this2.saveHandle(0, h);
 	      }
@@ -263,7 +270,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      vertical: vertical,
 	      included: included,
 	      offset: 0,
-	      length: offset
+	      length: offset,
+	      minimumTrackStyle: minimumTrackStyle
 	    });
 	
 	    return { tracks: track, handles: handle };
@@ -274,9 +282,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	Slider.displayName = 'Slider';
 	Slider.propTypes = {
-	  defaultValue: _react.PropTypes.number,
-	  value: _react.PropTypes.number,
-	  disabled: _react.PropTypes.bool
+	  defaultValue: _propTypes2.default.number,
+	  value: _propTypes2.default.number,
+	  disabled: _propTypes2.default.bool
 	};
 	Slider.defaultProps = {};
 	exports.default = (0, _createSlider2.default)(Slider);
@@ -302,6 +310,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _objectAssign = __webpack_require__(6);
+	
+	var _objectAssign2 = _interopRequireDefault(_objectAssign);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var Track = function Track(_ref) {
@@ -309,7 +321,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      included = _ref.included,
 	      vertical = _ref.vertical,
 	      offset = _ref.offset,
-	      length = _ref.length;
+	      length = _ref.length,
+	      minimumTrackStyle = _ref.minimumTrackStyle;
 	
 	  var style = {
 	    visibility: included ? 'visible' : 'hidden'
@@ -321,7 +334,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    style.left = offset + '%';
 	    style.width = length + '%';
 	  }
-	  return _react2.default.createElement('div', { className: className, style: style });
+	
+	  return _react2.default.createElement('div', { className: className, style: (0, _objectAssign2.default)({}, style, minimumTrackStyle) });
 	};
 	
 	exports.default = Track;
@@ -329,6 +343,102 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 6 */
+/***/ function(module, exports) {
+
+	/*
+	object-assign
+	(c) Sindre Sorhus
+	@license MIT
+	*/
+	
+	'use strict';
+	/* eslint-disable no-unused-vars */
+	var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+	var hasOwnProperty = Object.prototype.hasOwnProperty;
+	var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+	
+	function toObject(val) {
+		if (val === null || val === undefined) {
+			throw new TypeError('Object.assign cannot be called with null or undefined');
+		}
+	
+		return Object(val);
+	}
+	
+	function shouldUseNative() {
+		try {
+			if (!Object.assign) {
+				return false;
+			}
+	
+			// Detect buggy property enumeration order in older V8 versions.
+	
+			// https://bugs.chromium.org/p/v8/issues/detail?id=4118
+			var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
+			test1[5] = 'de';
+			if (Object.getOwnPropertyNames(test1)[0] === '5') {
+				return false;
+			}
+	
+			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+			var test2 = {};
+			for (var i = 0; i < 10; i++) {
+				test2['_' + String.fromCharCode(i)] = i;
+			}
+			var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+				return test2[n];
+			});
+			if (order2.join('') !== '0123456789') {
+				return false;
+			}
+	
+			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+			var test3 = {};
+			'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
+				test3[letter] = letter;
+			});
+			if (Object.keys(Object.assign({}, test3)).join('') !==
+					'abcdefghijklmnopqrst') {
+				return false;
+			}
+	
+			return true;
+		} catch (err) {
+			// We don't expect any of the above to throw, but better to be safe.
+			return false;
+		}
+	}
+	
+	module.exports = shouldUseNative() ? Object.assign : function (target, source) {
+		var from;
+		var to = toObject(target);
+		var symbols;
+	
+		for (var s = 1; s < arguments.length; s++) {
+			from = Object(arguments[s]);
+	
+			for (var key in from) {
+				if (hasOwnProperty.call(from, key)) {
+					to[key] = from[key];
+				}
+			}
+	
+			if (getOwnPropertySymbols) {
+				symbols = getOwnPropertySymbols(from);
+				for (var i = 0; i < symbols.length; i++) {
+					if (propIsEnumerable.call(from, symbols[i])) {
+						to[symbols[i]] = from[symbols[i]];
+					}
+				}
+			}
+		}
+	
+		return to;
+	};
+
+
+/***/ },
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -345,7 +455,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _addEventListener = __webpack_require__(8);
+	var _propTypes = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"prop-types\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+	
+	var _addEventListener = __webpack_require__(9);
 	
 	var _addEventListener2 = _interopRequireDefault(_addEventListener);
 	
@@ -560,6 +674,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          min = _props3.min,
 	          max = _props3.max,
 	          children = _props3.children,
+	          maximumTrackStyle = _props3.maximumTrackStyle,
 	          style = _props3.style;
 	
 	      var _Component$prototype$ = _Component.prototype.render.call(this),
@@ -567,6 +682,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          handles = _Component$prototype$.handles;
 	
 	      var sliderClassName = (0, _classnames2.default)((_classNames = {}, _defineProperty(_classNames, prefixCls, true), _defineProperty(_classNames, prefixCls + '-with-marks', Object.keys(marks).length), _defineProperty(_classNames, prefixCls + '-disabled', disabled), _defineProperty(_classNames, prefixCls + '-vertical', vertical), _defineProperty(_classNames, className, className), _classNames));
+	
 	      return _react2.default.createElement(
 	        'div',
 	        {
@@ -576,7 +692,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          onMouseDown: disabled ? noop : this.onMouseDown,
 	          style: style
 	        },
-	        _react2.default.createElement('div', { className: prefixCls + '-rail' }),
+	        _react2.default.createElement('div', { className: prefixCls + '-rail', style: maximumTrackStyle }),
 	        tracks,
 	        _react2.default.createElement(_Steps2.default, {
 	          prefixCls: prefixCls,
@@ -607,22 +723,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	    return ComponentEnhancer;
 	  }(Component), _class.displayName = 'ComponentEnhancer(' + Component.displayName + ')', _class.propTypes = _extends({}, Component.propTypes, {
-	    min: _react.PropTypes.number,
-	    max: _react.PropTypes.number,
-	    step: _react.PropTypes.number,
-	    marks: _react.PropTypes.object,
-	    included: _react.PropTypes.bool,
-	    className: _react.PropTypes.string,
-	    prefixCls: _react.PropTypes.string,
-	    disabled: _react.PropTypes.bool,
-	    children: _react.PropTypes.any,
-	    onBeforeChange: _react.PropTypes.func,
-	    onChange: _react.PropTypes.func,
-	    onAfterChange: _react.PropTypes.func,
-	    handle: _react.PropTypes.func,
-	    dots: _react.PropTypes.bool,
-	    vertical: _react.PropTypes.bool,
-	    style: _react.PropTypes.object
+	    min: _propTypes2.default.number,
+	    max: _propTypes2.default.number,
+	    step: _propTypes2.default.number,
+	    marks: _propTypes2.default.object,
+	    included: _propTypes2.default.bool,
+	    className: _propTypes2.default.string,
+	    prefixCls: _propTypes2.default.string,
+	    disabled: _propTypes2.default.bool,
+	    children: _propTypes2.default.any,
+	    onBeforeChange: _propTypes2.default.func,
+	    onChange: _propTypes2.default.func,
+	    onAfterChange: _propTypes2.default.func,
+	    handle: _propTypes2.default.func,
+	    dots: _propTypes2.default.bool,
+	    vertical: _propTypes2.default.bool,
+	    style: _propTypes2.default.object,
+	    minimumTrackStyle: _propTypes2.default.object,
+	    maximumTrackStyle: _propTypes2.default.object,
+	    handleStyle: _propTypes2.default.object
 	  }), _class.defaultProps = _extends({}, Component.defaultProps, {
 	    prefixCls: 'rc-slider',
 	    className: '',
@@ -645,14 +764,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	    included: true,
 	    disabled: false,
 	    dots: false,
-	    vertical: false
+	    vertical: false,
+	    minimumTrackStyle: {},
+	    maximumTrackStyle: {},
+	    handleStyle: {}
 	  }), _temp;
 	}
 	module.exports = exports['default'];
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports) {
 
 	// shim for using process in browser
@@ -838,7 +960,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -848,7 +970,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports["default"] = addEventListenerWrap;
 	
-	var _addDomEventListener = __webpack_require__(9);
+	var _addDomEventListener = __webpack_require__(10);
 	
 	var _addDomEventListener2 = _interopRequireDefault(_addDomEventListener);
 	
@@ -868,7 +990,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -878,7 +1000,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports["default"] = addEventListener;
 	
-	var _EventObject = __webpack_require__(10);
+	var _EventObject = __webpack_require__(11);
 	
 	var _EventObject2 = _interopRequireDefault(_EventObject);
 	
@@ -909,7 +1031,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -918,11 +1040,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 	
-	var _EventBaseObject = __webpack_require__(11);
+	var _EventBaseObject = __webpack_require__(12);
 	
 	var _EventBaseObject2 = _interopRequireDefault(_EventBaseObject);
 	
-	var _objectAssign = __webpack_require__(12);
+	var _objectAssign = __webpack_require__(6);
 	
 	var _objectAssign2 = _interopRequireDefault(_objectAssign);
 	
@@ -1191,7 +1313,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1254,102 +1376,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	exports["default"] = EventBaseObject;
 	module.exports = exports['default'];
-
-/***/ },
-/* 12 */
-/***/ function(module, exports) {
-
-	/*
-	object-assign
-	(c) Sindre Sorhus
-	@license MIT
-	*/
-	
-	'use strict';
-	/* eslint-disable no-unused-vars */
-	var getOwnPropertySymbols = Object.getOwnPropertySymbols;
-	var hasOwnProperty = Object.prototype.hasOwnProperty;
-	var propIsEnumerable = Object.prototype.propertyIsEnumerable;
-	
-	function toObject(val) {
-		if (val === null || val === undefined) {
-			throw new TypeError('Object.assign cannot be called with null or undefined');
-		}
-	
-		return Object(val);
-	}
-	
-	function shouldUseNative() {
-		try {
-			if (!Object.assign) {
-				return false;
-			}
-	
-			// Detect buggy property enumeration order in older V8 versions.
-	
-			// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-			var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
-			test1[5] = 'de';
-			if (Object.getOwnPropertyNames(test1)[0] === '5') {
-				return false;
-			}
-	
-			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-			var test2 = {};
-			for (var i = 0; i < 10; i++) {
-				test2['_' + String.fromCharCode(i)] = i;
-			}
-			var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
-				return test2[n];
-			});
-			if (order2.join('') !== '0123456789') {
-				return false;
-			}
-	
-			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-			var test3 = {};
-			'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
-				test3[letter] = letter;
-			});
-			if (Object.keys(Object.assign({}, test3)).join('') !==
-					'abcdefghijklmnopqrst') {
-				return false;
-			}
-	
-			return true;
-		} catch (err) {
-			// We don't expect any of the above to throw, but better to be safe.
-			return false;
-		}
-	}
-	
-	module.exports = shouldUseNative() ? Object.assign : function (target, source) {
-		var from;
-		var to = toObject(target);
-		var symbols;
-	
-		for (var s = 1; s < arguments.length; s++) {
-			from = Object(arguments[s]);
-	
-			for (var key in from) {
-				if (hasOwnProperty.call(from, key)) {
-					to[key] = from[key];
-				}
-			}
-	
-			if (getOwnPropertySymbols) {
-				symbols = getOwnPropertySymbols(from);
-				for (var i = 0; i < symbols.length; i++) {
-					if (propIsEnumerable.call(from, symbols[i])) {
-						to[symbols[i]] = from[symbols[i]];
-					}
-				}
-			}
-		}
-	
-		return to;
-	};
-
 
 /***/ },
 /* 13 */
@@ -1476,7 +1502,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	module.exports = warning;
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ },
 /* 16 */
@@ -1655,6 +1681,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _propTypes = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"prop-types\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+	
+	var _objectAssign = __webpack_require__(6);
+	
+	var _objectAssign2 = _interopRequireDefault(_objectAssign);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
@@ -1681,12 +1715,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        className = _props.className,
 	        vertical = _props.vertical,
 	        offset = _props.offset,
-	        restProps = _objectWithoutProperties(_props, ['className', 'vertical', 'offset']);
+	        handleStyle = _props.handleStyle,
+	        restProps = _objectWithoutProperties(_props, ['className', 'vertical', 'offset', 'handleStyle']);
 	
 	    var style = vertical ? { bottom: offset + '%' } : { left: offset + '%' };
 	    return _react2.default.createElement(
 	      'div',
-	      _extends({}, restProps, { className: className, style: style }),
+	      _extends({}, restProps, { className: className, style: (0, _objectAssign2.default)({}, style, handleStyle) }),
 	      _react2.default.createElement('hr', null)
 	    );
 	  };
@@ -1698,9 +1733,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	
 	Handle.propTypes = {
-	  className: _react.PropTypes.string,
-	  vertical: _react.PropTypes.bool,
-	  offset: _react.PropTypes.number
+	  className: _propTypes2.default.string,
+	  vertical: _propTypes2.default.bool,
+	  offset: _propTypes2.default.number,
+	  handleStyle: _propTypes2.default.object
 	};
 	module.exports = exports['default'];
 
@@ -1825,6 +1861,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _propTypes = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"prop-types\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+	
 	var _classnames = __webpack_require__(14);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
@@ -1833,7 +1873,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _Track2 = _interopRequireDefault(_Track);
 	
-	var _createSlider = __webpack_require__(6);
+	var _createSlider = __webpack_require__(7);
 	
 	var _createSlider2 = _interopRequireDefault(_createSlider);
 	
@@ -2210,12 +2250,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	Range.displayName = 'Range';
 	Range.propTypes = {
-	  defaultValue: _react.PropTypes.arrayOf(_react.PropTypes.number),
-	  value: _react.PropTypes.arrayOf(_react.PropTypes.number),
-	  count: _react.PropTypes.number,
-	  pushable: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.number]),
-	  allowCross: _react.PropTypes.bool,
-	  disabled: _react.PropTypes.bool
+	  defaultValue: _propTypes2.default.arrayOf(_propTypes2.default.number),
+	  value: _propTypes2.default.arrayOf(_propTypes2.default.number),
+	  count: _propTypes2.default.number,
+	  pushable: _propTypes2.default.oneOfType([_propTypes2.default.bool, _propTypes2.default.number]),
+	  allowCross: _propTypes2.default.bool,
+	  disabled: _propTypes2.default.bool
 	};
 	Range.defaultProps = {
 	  count: 1,
@@ -2243,6 +2283,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _propTypes = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"prop-types\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+	
 	var _rcTooltip = __webpack_require__(22);
 	
 	var _rcTooltip2 = _interopRequireDefault(_rcTooltip);
@@ -2266,7 +2310,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
 	
 	function createSliderWithTooltip(Component) {
-	  return function (_React$Component) {
+	  var _class, _temp;
+	
+	  return _temp = _class = function (_React$Component) {
 	    _inherits(ComponentWrapper, _React$Component);
 	
 	    function ComponentWrapper(props) {
@@ -2287,19 +2333,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	            disabled = _ref.disabled,
 	            restProps = _objectWithoutProperties(_ref, ['value', 'dragging', 'index', 'disabled']);
 	
+	        var tipFormatter = _this.props.tipFormatter;
+	
 	        return _react2.default.createElement(
 	          _rcTooltip2.default,
 	          {
 	            prefixCls: 'rc-slider-tooltip',
-	            overlay: value,
+	            overlay: tipFormatter(value),
 	            visible: !disabled && (_this.state.visibles[index] || dragging),
-	            onVisibleChange: function onVisibleChange(visible) {
-	              return _this.handleTooltipVisibleChange(index, visible);
-	            },
 	            placement: 'top',
 	            key: index
 	          },
-	          _react2.default.createElement(_Handle2.default, restProps)
+	          _react2.default.createElement(_Handle2.default, _extends({}, restProps, {
+	            onMouseEnter: function onMouseEnter() {
+	              return _this.handleTooltipVisibleChange(index, true);
+	            },
+	            onMouseLeave: function onMouseLeave() {
+	              return _this.handleTooltipVisibleChange(index, false);
+	            }
+	          }))
 	        );
 	      };
 	
@@ -2312,7 +2364,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	
 	    return ComponentWrapper;
-	  }(_react2.default.Component);
+	  }(_react2.default.Component), _class.propTypes = {
+	    tipFormatter: _propTypes2.default.func
+	  }, _class.defaultProps = {
+	    tipFormatter: function tipFormatter(value) {
+	      return value;
+	    }
+	  }, _temp;
 	}
 	module.exports = exports['default'];
 
@@ -2586,7 +2644,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _contains2 = _interopRequireDefault(_contains);
 	
-	var _addEventListener = __webpack_require__(8);
+	var _addEventListener = __webpack_require__(9);
 	
 	var _addEventListener2 = _interopRequireDefault(_addEventListener);
 	
@@ -3868,7 +3926,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _domAlign2 = _interopRequireDefault(_domAlign);
 	
-	var _addEventListener = __webpack_require__(8);
+	var _addEventListener = __webpack_require__(9);
 	
 	var _addEventListener2 = _interopRequireDefault(_addEventListener);
 	
