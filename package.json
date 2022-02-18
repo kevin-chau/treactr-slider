@@ -8,14 +8,14 @@
     "react-slider",
     "slider"
   ],
-  "homepage": "http://github.com/kevinchau321/treactr-slider",
-  "author": "kevinchau321",
+  "homepage": "http://github.com/kevin-chau/treactr-slider",
+  "author": "kevin-chau",
   "repository": {
     "type": "git",
-    "url": "git@github.com:kevinchau321/treactr-slider.git"
+    "url": "git@github.com:kevin-chau/treactr-slider.git"
   },
   "bugs": {
-    "url": "http://github.com/kevinchau321/treactr-slider/issues"
+    "url": "http://github.com/kevin-chau/treactr-slider/issues"
   },
   "files": [
     "assets/*.css",
